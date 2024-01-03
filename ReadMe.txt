@@ -11,3 +11,9 @@ the final output looks like
 2  APPLE  2022-08-1  Apple TV+ spy drama Slow Horses is coming back...  0.000  1.000  0.000    0.0000
 3  APPLE  2022-08-1  This Apple Watch Ultra case expands your color...  0.000  0.851  0.149    0.1027
 4  APPLE  2022-08-1    AirPods Pro 2 with USB-C hits lowest price ever  0.271  0.729  0.000   -0.3818
+
+
+Here the main code sentiment used to comapare is the compounded 
+sentiment which represents the news articles specific rating,
+this sentiment can be averaged out for all the articles of a day
+to get the stock sentiment for that day.
