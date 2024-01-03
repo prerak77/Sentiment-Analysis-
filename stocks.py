@@ -27,6 +27,7 @@ for ticker in tickers:
     news_table = html.find(id='news-table')
     news_tables[ticker] = news_table
 
+
 """
 <tr class="cursor-pointer has-label"
     onclick="trackAndOpenNews(event, 'InvestorPlace', 'https://investorplace.com/2023/12/buy-apple-stock-in-the-down-months-youll-be-glad-you-did/');">
@@ -96,7 +97,7 @@ analyzer = SentimentIntensityAnalyzer()
 columns = ['Ticker', 'Date', 'Time', 'Headline']
 news = pd.DataFrame(parsed_news, columns=columns)
 scores = news['Headline'].apply(analyzer.polarity_scores).tolist()
-
+breakpoint()
 df_scores = pd.DataFrame(scores)
 news = news.join(df_scores, rsuffix='_right')
 
