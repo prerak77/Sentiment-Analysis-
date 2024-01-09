@@ -1,6 +1,5 @@
 '''##############  libraries used  #########################'''
-import calendar
-from datetime import datetime, timedelta
+from helpers import get_next_date, get_dates_in_month
 import time
 from dotenv import load_dotenv
 import os
@@ -14,7 +13,7 @@ nltk.download('vader_lexicon')
 
 
 """##### Variables #######"""
-compaies_lst = ["AMZN"]      # Add stock tickers to this list
+compaies_lst = ["Amazon"]      # Add stock tickers to this list
 month = "01"                 # enter as number eg:- may ----> 05
 year = "2022"
 """#######################"""
@@ -24,28 +23,6 @@ year = "2022"
 # access to all archived new artilces for the past 50 years
 load_dotenv()
 api_key = os.environ.get("API_KEY")
-
-
-# function to return all teh dates in a given month and year
-def get_dates_in_month(year, month):
-    cal = calendar.monthcalendar(year, month)
-    dates_in_month = [day for week in cal for day in week if day != 0]
-    return dates_in_month
-
-# function to return the next date of teh current date
-
-
-def get_next_date(current_date):
-    # Convert the input date string to a datetime object
-    current_date = datetime.strptime(current_date, '%Y-%m-%d')
-
-    # Calculate the next date by adding one day
-    next_date = current_date + timedelta(days=1)
-
-    # Convert the next date back to a string
-    next_date_str = next_date.strftime('%Y-%m-%d')
-
-    return next_date_str
 
 
 """
@@ -63,11 +40,15 @@ for company in compaies_lst:
     new_data = []
     for date in dates:
         start_date = f"{year}-{month}-{date}"
-        end_date = get_next_date(start_date)
+        end_date = f"{get_next_date(start_date)}T00:39:25Z"
+        if date < 10:
+            start_date = f"{year}-{month}-0{date}T00:39:25Z"
+        else:
+            start_date = f"{year}-{month}-{date}T00:39:25Z"
+
         language = "en"
         country = "us"
         no_articles = "50"
-
         # add a 1 sec delay to avoid the too many requests error
         time.sleep(1)
 
@@ -125,6 +106,7 @@ for company in compaies_lst:
 
         new_data.append([company, start_date,
                          average_sen, largest_sen, smallest_sen])
+        breakpoint()
 
     columns = ['Ticker', 'Date', 'Mean', "Max", "Min"]
     stock_sen = pd.DataFrame(new_data, columns=columns)
