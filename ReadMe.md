@@ -49,7 +49,6 @@ git clone https://github.com/prerak77/Sentiment-Analysis-
 Navigate to the project directory and install the required Python libraries using pip:
 
 ```bash
-cd your-repo
 pip install -r requirements.txt
 ```
 
