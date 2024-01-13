@@ -18,14 +18,17 @@ The final output table includes the following columns:
 
 ## Example Output
 
-```plaintext
-  Ticker       Date                                           Headline    neg    neu    pos  compound
-0  APPLE  2022-08-1  Start your journal today! Apple Support video ...  0.000  0.842  0.158    0.4574
-1  APPLE  2022-08-1  This sweet new AirPods Pro 2 deal (with USB-C)...  0.075  0.751  0.173    0.4019
-2  APPLE  2022-08-1  Apple TV+ spy drama Slow Horses is coming back...  0.000  1.000  0.000    0.0000
-3  APPLE  2022-08-1  This Apple Watch Ultra case expands your color...  0.000  0.851  0.149    0.1027
-4  APPLE  2022-08-1    AirPods Pro 2 with USB-C hits lowest price ever  0.271  0.729  0.000   -0.3818
-```
+| Date       | Open               | High               | Low                | Close              | Adj Close          | Volume   | Mean   | Max    | Min     |
+| ---------- | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ | -------- | ------ | ------ | ------- |
+| 2021-01-04 | 163.5              | 163.60000610351562 | 157.2010040283203  | 159.3314971923828  | 159.3314971923828  | 88228000 | 0.4415 | 0.8555 | 0.0     |
+| 2021-01-05 | 158.30050659179688 | 161.16900634765625 | 158.2530059814453  | 160.92550659179688 | 160.92550659179688 | 53110000 | 0.3561 | 0.8658 | 0.1779  |
+| 2021-01-06 | 157.32400512695312 | 159.87550354003906 | 156.55799865722656 | 156.91900634765625 | 156.91900634765625 | 87896000 | 0.4162 | 0.7096 | 0.0     |
+| 2021-01-07 | 157.85000610351562 | 160.427001953125   | 157.75             | 158.10800170898438 | 158.10800170898438 | 70290000 | 0.3094 | 0.8555 | -0.7845 |
+| 2021-01-08 | 159.0              | 159.53199768066406 | 157.11000061035156 | 159.13499450683594 | 159.13499450683594 | 70754000 | 0.3158 | 0.7351 | 0.0     |
+| 2021-01-11 | 157.40049743652344 | 157.81900024414062 | 155.5              | 155.7104949951172  | 155.7104949951172  | 73668000 | 0.3149 | 0.7096 | -0.0516 |
+| 2021-01-12 | 156.0              | 157.10699462890625 | 154.3000030517578  | 156.04150390625    | 156.04150390625    | 70292000 | 0.0772 | 0.5106 | -0.4939 |
+| 2021-01-13 | 156.4219970703125  | 159.49749755859375 | 156.10400390625    | 158.29449462890625 | 158.29449462890625 | 66424000 | 0.2294 | 0.7096 | -0.5423 |
+| 2021-01-14 | 158.37600708007812 | 158.89999389648438 | 156.0294952392578  | 156.37350463867188 | 156.37350463867188 | 61418000 | 0.1158 | 0.7096 | -0.296  |
 
 ## Sentiment Analysis
 
@@ -33,11 +36,49 @@ The key metric for sentiment comparison is the `compound` score. This score prov
 
 ## How to Use
 
-1. **Extract News Headlines:**
-   Use the provided code to extract news headlines for a specific company within a designated time frame.
+### 1. Clone the Codebase
 
-2. **Perform Sentiment Analysis:**
-   Analyze the sentiment of each news headline using the compound sentiment score.
+Clone the repository onto your local machine using the following command:
 
-3. **Interpret Results:**
-   Review the output table to understand the overall sentiment towards the company on each analyzed day.
+```bash
+git clone https://github.com/prerak77/Sentiment-Analysis-
+```
+
+### 2. Install Dependencies
+
+Navigate to the project directory and install the required Python libraries using pip:
+
+```bash
+cd your-repo
+pip install -r requirements.txt
+```
+
+The primary dependencies include:
+
+- [yfinance](https://pypi.org/project/yfinance/)
+- [pandas](https://pypi.org/project/pandas/)
+- [nltk](https://pypi.org/project/nltk/)
+
+### 3. Adjust Parameters
+
+In the `new_stocks.py` file, there are three main parameters: `company_name` and `year` for sentiment analysis. Modify these parameters according to the company and year of interest.
+
+### 4. Create an .env File
+
+This project uses the G News API for collecting news articles. Obtain your API token by creating an account at [G News](https://gnews.io/), and copy the token from the dashboard. Create a new `.env` file in the root directory and paste the API token as follows:
+
+```env
+API_TOKEN_1=your-api-token
+```
+
+### 5. Run the Script
+
+Execute the `new_stocks.py` file to perform sentiment analysis and generate a CSV file with the necessary data:
+
+```bash
+python new_stocks.py
+```
+
+This script will collect news articles, perform sentiment analysis, and save the results in a CSV file.
+
+Feel free to explore and customize the code to suit your specific requirements!
