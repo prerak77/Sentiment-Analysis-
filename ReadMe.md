@@ -72,10 +72,10 @@ API_TOKEN_1=your-api-token
 
 ### 5. Run the Script
 
-Execute the `new_stocks.py` file to perform sentiment analysis and generate a CSV file with the necessary data:
+Execute the `main.py` file to perform sentiment analysis and generate a CSV file with the necessary data:
 
 ```bash
-python new_stocks.py
+python main.py
 ```
 
 This script will collect news articles, perform sentiment analysis, and save the results in a CSV file.
